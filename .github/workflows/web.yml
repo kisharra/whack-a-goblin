@@ -1,3 +1,4 @@
+# /.github/workflows/deploy.yml
 name: WHACK-A-GOBLIN
 
 on:
@@ -7,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
@@ -14,15 +16,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+          cache: 'yarn'
 
       - name: Set npm registry (optional)
-        run: npm config set registry https://registry.npmjs.org 
+        run: yarn config set registry https://registry.npmjs.org
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
 
       - name: Build project
-        run: npm run build
+        run: yarn build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
