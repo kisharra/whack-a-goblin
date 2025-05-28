@@ -1,0 +1,1 @@
+![CI](https://github.com/kisharra/whack-a-goblin/actions/workflows/web.yml/badge.svg)
